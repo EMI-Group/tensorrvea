@@ -16,7 +16,7 @@
 </p>
 
 ## Introduction
-🚀 Tensorized RVEA (TensorRVEA),  a part of EvoX project, aims to enhance evolutionary multiobjective optimization by incorporating GPU acceleration. This algorithm is developed with an emphasis on addressing large-scale multiobjective optimization problems (LSMOPs), focusing on improving efficiency and scalability. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.
+🚀 Tensorized RVEA (TensorRVEA),  a part of EvoX project, aims to enhance evolutionary multiobjective optimization by incorporating GPU acceleration. This algorithm is developed with an emphasis on addressing large-scale multiobjective optimization problems, focusing on improving efficiency and scalability. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.
 
 ## Features
 - **GPU Acceleration** 💻: Leverages GPUs for enhanced computational capabilities.
