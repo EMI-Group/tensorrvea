@@ -17,10 +17,10 @@
   </a>
 </p>
 
-## Introduction
+
 Tensorized RVEA (TensorRVEA) is proposed to enhance the scalability and efficiency of evolutionary multiobjective optimization by incorporating GPU acceleration. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.  The implementation of TensorRVEA is compatible with the [EvoX](https://github.com/EMI-Group/evox/) framewrok.
 
-## Features
+## Key Features
 - **GPU Acceleration** 💻: Leverages GPUs for enhanced computational capabilities.
 - **Large-Scale Optimization** 📈: Ideal for large population sizes and high-dimensional challenges.
 - **Flexibility** 🔨: Compatible with a variety of tensor-based reproduction operators, including GA, DE, PSO, and CSO.
