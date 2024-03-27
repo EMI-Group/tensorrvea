@@ -7,7 +7,9 @@
   <br>
 </h1>
 
+<p align="center">
 🌟 TensorRVEA: Tensorized Reference Vector Guided Evolutionary Algorithm 🌟
+</p>
 
 <p align="center">
   <a href="https://arxiv.org/">
