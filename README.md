@@ -189,7 +189,6 @@ if __name__ == "__main__":
 
 - Engage in discussions and share your experiences on [GitHub Discussion Board](https://github.com/EMI-Group/evox/discussions).
 - Join our QQ group (ID: 297969717).
-- Official Website: https://evox.group/
   
 ## Citing TensorRVEA
 
