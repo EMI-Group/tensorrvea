@@ -189,18 +189,16 @@ if __name__ == "__main__":
 
 - Engage in discussions and share your experiences on [GitHub Discussion Board](https://github.com/EMI-Group/evox/discussions).
 - Join our QQ group (ID: 297969717).
-- Help with the translation of the documentation on [Weblate](https://hosted.weblate.org/projects/evox/evox/).
-We currently support translations in two languages, [English](https://evox.readthedocs.io/en/latest/) / [中文](https://evox.readthedocs.io/zh/latest/).
 - Official Website: https://evox.group/
   
-## Citing EvoX
+## Citing TensorRVEA
 
-If you use EvoX in your research and want to cite it in your work, please use:
+If you use TensorRVEA in your research and want to cite it in your work, please use:
 ```
-@article{evox,
-  title = {{EvoX}: {A} {Distributed} {GPU}-accelerated {Framework} for {Scalable} {Evolutionary} {Computation}},
-  author = {Huang, Beichen and Cheng, Ran and Li, Zhuozhao and Jin, Yaochu and Tan, Kay Chen},
-  journal = {arXiv preprint arXiv:2301.12457},
-  eprint = {2301.12457},
-  year = {2023}
+@article{tensorrvea,
+  title = {{GPU}-accelerated {Evolutionary} {Multiobjective} {Optimization} {Using} {Tensorized} {RVEA}},
+  author = {Liang, Zhenyu and Jiang, Tao and Sun, Kebin and Cheng, Ran},
+  booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
+  year = {2024},
+  series = {GECCO '24}
 }
