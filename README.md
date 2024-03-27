@@ -28,7 +28,7 @@ Tensorized Reference Vector Guided Evolutionary Algorithm (TensorRVEA) is propos
 
 ## Requirements
 TensorRVEA requires:
-- EvoX (version >= 0.7.0)
+- evox (version >= 0.7.0)
 - jax (version >= 0.4.16)
 - jaxlib (version >= 0.3.0)
 - brax (version >= 0.10.0)
