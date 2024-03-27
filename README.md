@@ -197,7 +197,6 @@ If you use TensorRVEA in your research and want to cite it in your work, please 
 @article{tensorrvea,
   title = {{GPU}-accelerated {Evolutionary} {Multiobjective} {Optimization} {Using} {Tensorized} {RVEA}},
   author = {Liang, Zhenyu and Jiang, Tao and Sun, Kebin and Cheng, Ran},
-  booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
-  year = {2024},
-  series = {GECCO '24}
+  booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference (GECCO)},
+  year = {2024}
 }
