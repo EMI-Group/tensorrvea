@@ -8,7 +8,7 @@
 </h1>
 
 <p align="center">
-🌟 TensorRVEA: Tensorized Reference Vector Guided Evolutionary Algorithm 🌟
+🌟 TensorRVEA: Tensorized RVEA for GPU-accelerated Evolutionary Multi-objective Optimization 🌟
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 </p>
 
 
-Tensorized RVEA (TensorRVEA) is proposed to enhance the scalability and efficiency of evolutionary multiobjective optimization by incorporating GPU acceleration. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.  The implementation of TensorRVEA is compatible with the [EvoX](https://github.com/EMI-Group/evox/) framewrok.
+Tensorized Reference Vector Guided Evolutionary Algorithm (TensorRVEA) aims to enhance the scalability and efficiency of evolutionary multi-objective optimization by incorporating GPU acceleration. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.  The implementation of TensorRVEA is compatible with the [EvoX](https://github.com/EMI-Group/evox/) framewrok in JAX.
 
 ## Key Features
 - **GPU Acceleration** 💻: Leverages GPUs for enhanced computational capabilities.
@@ -28,7 +28,7 @@ Tensorized RVEA (TensorRVEA) is proposed to enhance the scalability and efficien
 
 ## Requirements
 TensorRVEA requires:
-- EvoX (version >= 0.7.0)
+- evox (version >= 0.7.0)
 - jax (version >= 0.4.16)
 - jaxlib (version >= 0.3.0)
 - brax (version >= 0.10.0)
@@ -189,7 +189,6 @@ if __name__ == "__main__":
 
 - Engage in discussions and share your experiences on [GitHub Discussion Board](https://github.com/EMI-Group/evox/discussions).
 - Join our QQ group (ID: 297969717).
-- Official Website: https://evox.group/
   
 ## Citing TensorRVEA
 
@@ -198,7 +197,6 @@ If you use TensorRVEA in your research and want to cite it in your work, please 
 @article{tensorrvea,
   title = {{GPU}-accelerated {Evolutionary} {Multiobjective} {Optimization} {Using} {Tensorized} {RVEA}},
   author = {Liang, Zhenyu and Jiang, Tao and Sun, Kebin and Cheng, Ran},
-  booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
-  year = {2024},
-  series = {GECCO '24}
+  booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference (GECCO)},
+  year = {2024}
 }
