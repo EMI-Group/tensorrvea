@@ -1,5 +1,5 @@
 from .tensorrvea import TensorRVEA
-from .rveaorigin import RVEAOrigin
+from .rvea_origin import RVEAOrigin
 from .rvea_pso import RVEAPSO
 from .rvea_cso import RVEACSO
 from .rvea_de import RVEADE

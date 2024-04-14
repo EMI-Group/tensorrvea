@@ -148,19 +148,10 @@ class RVEACSO(Algorithm):
             merged_pop, merged_fitness, v, (current_gen / self.max_gen) ** self.alpha
         )
 
-        def rv_adaptation(pop_obj, v):
-            v_temp = v * jnp.tile(
-                (jnp.nanmax(pop_obj, axis=0) - jnp.nanmin(pop_obj, axis=0)), (len(v), 1)
-            )
+        def rv_adaptation(pop_obj, v, v0):
+            return v0 * (jnp.nanmax(pop_obj, axis=0) - jnp.nanmin(pop_obj, axis=0))
 
-            next_v = v_temp / jnp.tile(
-                jnp.sqrt(jnp.sum(v_temp**2, axis=1)).reshape(len(v), 1),
-                (1, jnp.shape(v)[1]),
-            )
-
-            return next_v
-
-        def no_update(_pop_obj, v):
+        def no_update(_pop_obj, v, v0):
             return v
 
         v = jax.lax.cond(
@@ -168,6 +159,7 @@ class RVEACSO(Algorithm):
             rv_adaptation,
             no_update,
             survivor_fitness,
+            v,
             state.init_v,
         )
 
