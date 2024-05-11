@@ -30,7 +30,7 @@ Tensorized Reference Vector Guided Evolutionary Algorithm (TensorRVEA) aims to e
 
 ## Requirements
 TensorRVEA requires:
-- evox (version >= 0.7.0)
+- evox (version >= 0.8.0)
 - jax (version >= 0.4.16)
 - jaxlib (version >= 0.3.0)
 - brax (version >= 0.10.0)
@@ -64,7 +64,7 @@ def run_moea(algorithm, key):
 
     state = workflow.init(key)
 
-    true_pf, _ = problem.pf(problem.init())
+    true_pf = problem.pf()
 
     igd = IGD(true_pf)
 
@@ -75,7 +75,7 @@ def run_moea(algorithm, key):
         fit = state.get_child_state("algorithm").fitness
         non_nan_rows = fit[~np.isnan(fit).any(axis=1)]
         print(f'Generation {i+1}, IGD: {igd(non_nan_rows)}')
-    fig = monitor.plot(state, problem)
+    fig = monitor.plot()
     fig.show()
 
 
@@ -196,7 +196,7 @@ if __name__ == "__main__":
 
 If you use TensorRVEA in your research and want to cite it in your work, please use:
 ```
-@article{tensorrvea,
+@inproceedings{tensorrvea,
   title = {{GPU}-accelerated {Evolutionary} {Multiobjective} {Optimization} {Using} {Tensorized} {RVEA}},
   author = {Liang, Zhenyu and Jiang, Tao and Sun, Kebin and Cheng, Ran},
   booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference (GECCO)},
