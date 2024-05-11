@@ -11,6 +11,7 @@ import json
 from tqdm import tqdm
 from evox.utils import TreeAndVector
 from evox.operators import non_dominated_sort
+import os
 
 
 def get_algorithm(algorithm_name, center, n_objs, pop_size):
@@ -70,7 +71,7 @@ def calculate_nd_history(pop, obj, num_iter):
 
 def main():
     jax.config.update("jax_default_prng_impl", "rbg")
-    num_iter = 3
+    num_iter, num_runs = 100, 10
     algorithm_list = ["TensorRVEA", "NSGAII", "Random"]
     envs = [
         {"name": "mo_halfcheetah", "observation_shape": 17, "action_shape": 6, "num_obj": 2, "type": "continuous"},
@@ -78,8 +79,11 @@ def main():
         {"name": "mo_hopper_m3", "observation_shape": 11, "action_shape": 3, "num_obj": 3, "type": "continuous"},
         {"name": "mo_swimmer", "observation_shape": 8, "action_shape": 2, "num_obj": 2, "type": "continuous"},
     ]
-    num_runs = 2
     alg_key = random.PRNGKey(42)
+
+    directory = f"../data/multiobjective_neuroevolution"
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
 
     for algorithm_name in tqdm(algorithm_list, desc="Algorithms"):
         for env in tqdm(envs, desc="Environments"):
@@ -104,8 +108,8 @@ def main():
                 problem = MoBrax(policy=jax.jit(model.apply), env_name=env["name"], cap_episode=1000,
                                      num_obj=env["num_obj"])
 
-                algorithm = get_algorithm(algorithm_name, center, env["num_obj"], 100)
-                if not algorithm:
+                algorithm = get_algorithm(algorithm_name, center, env["num_obj"], 10000)
+                if algorithm is None:
                     raise ValueError(f"Algorithm {algorithm_name} not recognized")
 
                 pops, objs, times = run_workflow(algorithm, problem, workflow_key, adapter, num_iter)
@@ -118,7 +122,7 @@ def main():
                     "time": times.tolist()
                 }
 
-                with open(f"../data/multiobjective_neuroevolution/{name}.json", "w") as f:
+                with open(f"{directory}/{name}.json", "w") as f:
                     json.dump(raw_data, f)
 
 

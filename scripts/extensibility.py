@@ -10,6 +10,7 @@ from evox.operators import non_dominated_sort
 from evox.workflows import StdWorkflow
 from problems import MoBrax
 from algorithms import TensorRVEA, RVEACSO, RVEADE, RVEAPSO, RVEARandom
+import os
 
 
 def get_algorithm(algorithm_name, center, n_objs, pop_size):
@@ -37,7 +38,6 @@ class Model(nn.Module):
 
 
 def run_workflow(algorithm, problem, key, adapter, num_iter):
-    # monitor = MOMonitor(record_pf=False)
     workflow = StdWorkflow(algorithm, problem, pop_transform=adapter.batched_to_tree, opt_direction="max")
     step_func = jax.jit(workflow.step)
 
@@ -73,12 +73,16 @@ def calculate_nd_history(pops, objs, num_iter):
 
 def main():
     jax.config.update("jax_default_prng_impl", "rbg")
-    num_iter, num_runs = 2, 2
+    num_iter, num_runs = 100, 10
     algorithm_list = ["RVEACSO", "RVEAGA", "RVEADE", "RVEAPSO", "RVEARandom"]
     envs = [
         {"name": "mo_hopper_m2", "observation_shape": 11, "action_shape": 3, "num_obj": 2},
         {"name": "mo_hopper_m3", "observation_shape": 11, "action_shape": 3, "num_obj": 3},
     ]
+
+    directory = f"../data/extensibility_performance"
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
 
     for algorithm_name in tqdm(algorithm_list, desc="Algorithms"):
         for env in tqdm(envs, desc="Environments"):
@@ -92,7 +96,7 @@ def main():
                 center = adapter.to_vector(params)
                 problem = MoBrax(policy=jax.jit(model.apply), env_name=env_name, cap_episode=1000, num_obj=env["num_obj"])
 
-                algorithm = get_algorithm(algorithm_name, center, env["num_obj"], 200)
+                algorithm = get_algorithm(algorithm_name, center, env["num_obj"], 10000)
                 pops, objs, times = run_workflow(algorithm, problem, workflow_key, adapter, num_iter)
                 history_data = calculate_nd_history(pops, objs, num_iter)
 
@@ -102,7 +106,7 @@ def main():
                     "final_obj": history_data[-1]["pf_fitness"],
                     "time": times.tolist()
                 }
-                with open(f"../data/extensibility_performance/{algorithm_name}_{env_name}_exp{exp_id}.json", "w") as f:
+                with open(f"{directory}/{algorithm_name}_{env_name}_exp{exp_id}.json", "w") as f:
                     json.dump(data, f)
 
 

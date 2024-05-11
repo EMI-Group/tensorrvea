@@ -7,7 +7,7 @@ from evox.operators.sampling import UniformSampling
 from evox.metrics import HV
 from metrics import ExpectedUtility
 from evox.operators import non_dominated_sort
-
+import os
 
 def load_and_aggregate_data(algorithm, env_name, num_runs, num_iter, ref, w, metric_key):
     aggregated_pop, aggregated_obj, times = [], [], []
@@ -51,15 +51,24 @@ def calculate_and_save_results(algorithm, env_name, pop, obj, hv, eu, times):
     pf_pop = pop[pf]
     pf_obj = obj[pf]
 
+    metrics_directory = "../data/multiobjective_neuroevolution/metrics"
+    pareto_directory = "../data/multiobjective_neuroevolution/pareto"
+
+    if not os.path.exists(metrics_directory):
+        os.makedirs(metrics_directory)
+
+    if not os.path.exists(pareto_directory):
+        os.makedirs(pareto_directory)
+
     # Saving HV, EU metrics, and computation times
     metrics_data = {"HV": hv.tolist(), "ExpectedUtility": eu.tolist(), "time": times.tolist()}
-    metrics_file_path = f"../data/multiobjective_neuroevolution/metrics/{algorithm}_{env_name}_metrics.json"
+    metrics_file_path = f"{metrics_directory}/{algorithm}_{env_name}_metrics.json"
     with open(metrics_file_path, "w") as f:
         json.dump(metrics_data, f)
 
     # Saving Pareto optimal solutions
     pareto_data = {"pop": pf_pop.tolist(), "obj": pf_obj.tolist()}
-    pareto_file_path = f"../data/multiobjective_neuroevolution/pareto/{algorithm}_{env_name}_pareto.json"
+    pareto_file_path = f"{pareto_directory}/{algorithm}_{env_name}_pareto.json"
     with open(pareto_file_path, "w") as f:
         json.dump(pareto_data, f)
 
@@ -68,7 +77,7 @@ def calculate_and_save_results(algorithm, env_name, pop, obj, hv, eu, times):
 
 
 if __name__ == "__main__":
-    num_iter = 3
+    num_iter, num_runs = 100, 10
     algorithm_list = ["TensorRVEA", "NSGAII", "Random"]
     envs = [
         {"name": "mo_halfcheetah", "observation_shape": 17, "action_shape": 6, "num_obj": 2, "type": "continuous", "ref": jnp.array([0, -599.78643799])},
@@ -77,7 +86,7 @@ if __name__ == "__main__":
          "ref": jnp.array([0, 0, -1942.84301758])},
         {"name": "mo_swimmer", "observation_shape": 8, "action_shape": 2, "num_obj": 2, "type": "continuous", "ref": jnp.array([0, -0.19898804])},
     ]
-    num_runs = 2
+
     metric_key = random.PRNGKey(42)
 
     for algorithm in tqdm(algorithm_list, desc="Algorithms"):

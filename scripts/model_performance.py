@@ -8,6 +8,7 @@ import time
 import json
 from tqdm import tqdm
 from evox.operators import non_dominated_sort
+import os
 
 
 def run(algorithm_name, problem, key, num_iter=100, d=12):
@@ -105,6 +106,10 @@ if __name__ == "__main__":
     key = random.PRNGKey(42)
     pro_keys = random.split(key, num_pro)
 
+    directory = f"../data/model_performance"
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
     for algorithm_name in algorithm_names:
         for j, problem in enumerate(problem_list):
             d = 7 if j == 0 else 12  # Dimension of the decision variables
@@ -112,7 +117,7 @@ if __name__ == "__main__":
 
             pro_key = pro_keys[j]
             run_keys = random.split(pro_key, num_runs)
-            pf, _ = problem.pf(problem.init())
+            pf = problem.pf()
             for exp_id in tqdm(range(num_runs), desc=f"{algorithm_name} - Problem {j + 1}"):
                 run_key = run_keys[exp_id]
                 pop, obj, t = run(algorithm_name, problem, run_key, num_iter=num_iter, d=d)
@@ -122,5 +127,5 @@ if __name__ == "__main__":
                 )
 
                 data = {"history_data": history_data, "igd": igd.tolist(), "hv": hv.tolist(), "time": t.tolist()}
-                with open(f"../data/model_performance/{algorithm_name}_DTLZ{j + 1}_exp{exp_id}.json", "w") as f:
+                with open(f"{directory}/{algorithm_name}_DTLZ{j + 1}_exp{exp_id}.json", "w") as f:
                     json.dump(data, f)

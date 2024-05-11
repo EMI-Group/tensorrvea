@@ -7,6 +7,7 @@ from evox.operators.sampling import UniformSampling
 from evox.metrics import HV
 from metrics import ExpectedUtility
 from evox.operators import non_dominated_sort
+import os
 
 
 def load_and_aggregate_data(algorithm, env_name, num_runs, num_iter, ref, w, metric_key):
@@ -51,15 +52,24 @@ def calculate_and_save_results(algorithm, env_name, pop, obj, hv, eu, times):
     pf_pop = pop[pf]
     pf_obj = obj[pf]
 
+    metrics_directory = "../data/extensibility_performance/metrics"
+    pareto_directory = "../data/extensibility_performance/pareto"
+
+    if not os.path.exists(metrics_directory):
+        os.makedirs(metrics_directory)
+
+    if not os.path.exists(pareto_directory):
+        os.makedirs(pareto_directory)
+
     # Saving HV, EU metrics, and computation times
     metrics_data = {"HV": hv.tolist(), "ExpectedUtility": eu.tolist(), "time": times.tolist()}
-    metrics_file_path = f"../data/extensibility_performance/metrics/{algorithm}_{env_name}_metrics.json"
+    metrics_file_path = f"{metrics_directory}/{algorithm}_{env_name}_metrics.json"
     with open(metrics_file_path, "w") as f:
         json.dump(metrics_data, f)
 
     # Saving Pareto optimal solutions
     pareto_data = {"pop": pf_pop.tolist(), "obj": pf_obj.tolist()}
-    pareto_file_path = f"../data/extensibility_performance/pareto/{algorithm}_{env_name}_pareto.json"
+    pareto_file_path = f"{pareto_directory}/{algorithm}_{env_name}_pareto.json"
     with open(pareto_file_path, "w") as f:
         json.dump(pareto_data, f)
 
@@ -68,13 +78,13 @@ def calculate_and_save_results(algorithm, env_name, pop, obj, hv, eu, times):
 
 
 if __name__ == "__main__":
-    num_iter = 2
+    num_iter, num_runs = 100, 10
     algorithm_list = ["RVEAGA", "RVEACSO", "RVEADE", "RVEAPSO", "RVEARandom"]
     envs = [
         {"name": "mo_hopper_m2", "num_obj": 2, "ref": jnp.array([0, -1127.1895752])},
         {"name": "mo_hopper_m3", "num_obj": 3, "ref": jnp.array([80.86401367, 0, -1905.52331543])},
     ]
-    num_runs = 2
+
     metric_key = random.PRNGKey(42)
 
     for algorithm in tqdm(algorithm_list, desc="Algorithms"):

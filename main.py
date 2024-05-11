@@ -20,7 +20,7 @@ def run_moea(algorithm, key):
 
     state = workflow.init(key)
 
-    true_pf, _ = problem.pf(problem.init())
+    true_pf = problem.pf()
 
     igd = IGD(true_pf)
 
@@ -31,7 +31,7 @@ def run_moea(algorithm, key):
         fit = state.get_child_state("algorithm").fitness
         non_nan_rows = fit[~np.isnan(fit).any(axis=1)]
         print(f'Generation {i+1}, IGD: {igd(non_nan_rows)}')
-    fig = monitor.plot(state, problem)
+    fig = monitor.plot()
     fig.show()
 
 

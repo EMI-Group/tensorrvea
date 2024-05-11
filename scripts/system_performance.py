@@ -42,8 +42,8 @@ if __name__ == "__main__":
     jax.config.update("jax_default_prng_impl", "rbg")
     num_iter = 100
 
-    pop_scale_list = np.round(2 ** np.arange(5, 15)).astype(int) #5, 15
-    dim_scale_list = np.round(2 ** np.arange(9, 19)).astype(int) #9, 19
+    pop_scale_list = np.round(2 ** np.arange(5, 15)).astype(int)
+    dim_scale_list = np.round(2 ** np.arange(9, 19)).astype(int)
 
     algorithm_list = ["RVEAOrigin", "TensorRVEA"]
 
@@ -52,6 +52,10 @@ if __name__ == "__main__":
 
     num_runs = 31
     alg_keys = [random.PRNGKey(42), random.PRNGKey(43)]
+
+    directory = f"../data/system_performance"
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
 
     for i, algorithm_name in enumerate(algorithm_list):
         name = f"{algorithm_name}_DTLZ1_{device}"
@@ -84,5 +88,5 @@ if __name__ == "__main__":
             }
 
             # Save to JSON file
-            with open(f"../data/system_performance/{name}_exp{exp_id}.json", "w") as f:
+            with open(f"{directory}/{name}_exp{exp_id}.json", "w") as f:
                 json.dump(data, f)
