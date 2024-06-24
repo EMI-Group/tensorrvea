@@ -22,6 +22,12 @@
 
 Tensorized Reference Vector Guided Evolutionary Algorithm (TensorRVEA) aims to enhance the scalability and efficiency of evolutionary multi-objective optimization by incorporating GPU acceleration. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.  The implementation of TensorRVEA is compatible with the [EvoX](https://github.com/EMI-Group/evox/) framewrok in JAX.
 
+<p align="center">
+  <img src="./assets/TensorRVEA_halfcheetah.gif" width="30%"/>
+  <img src="./assets/TensorRVEA_hopper.gif" width="30%"/>
+  <img src="./assets/TensorRVEA_swimmer.gif" width="30%"/>
+</p>
+
 ## Key Features
 - **GPU Acceleration** 💻: Leverages GPUs for enhanced computational capabilities.
 - **Large-Scale Optimization** 📈: Ideal for large population sizes and high-dimensional challenges.
