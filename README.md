@@ -22,13 +22,41 @@
 
 Tensorized Reference Vector Guided Evolutionary Algorithm (TensorRVEA) aims to enhance the scalability and efficiency of evolutionary multi-objective optimization by incorporating GPU acceleration. By adapting key data structures and operators into tensor forms, TensorRVEA seeks to utilize GPU-based parallel computing to offer a more efficient approach to complex optimization challenges.  The implementation of TensorRVEA is compatible with the [EvoX](https://github.com/EMI-Group/evox/) framewrok in JAX.
 
-<p align="center">
-  <img src="./assets/TensorRVEA_halfcheetah.gif" width="30%"/>
-  <img src="./assets/TensorRVEA_hopper.gif" width="30%"/>
-  <img src="./assets/TensorRVEA_swimmer.gif" width="30%"/>
-</p>
+
+## Demonstrations
+Below are demonstrations of TensorRVEA applied to various simulated multiobjective robotics environments. Specifically, TensorRVEA optimizes the parameters of the MLP, and then uses this MLP as a policy model to visualize the robot's behavior in the simulated environment.
+
+<table width="90%">
+  <tr>
+    <td width="30%">
+      <img width="100%" style="display:block; margin:auto;" src="./assets/TensorRVEA_halfcheetah.gif"></img>
+    </td>
+    <td width="30%">
+      <img width="100%" style="display:block; margin:auto;" src="./assets/TensorRVEA_hopper.gif"></img>
+    </td>
+    <td width="30%">
+      <img width="100%" style="display:block; margin:auto;" src="./assets/TensorRVEA_swimmer.gif"></img>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      MoHalfcheetah
+    </td>
+    <td align="center">
+      MoHooper-m2
+    </td>
+    <td align="center">
+      MoSwimmer
+    </td>
+  </tr>
+</table>
+
+- MoHalfcheetah: Optimizing for speed and control cost.
+- MoHooper-m2: Aiming for maximum speed and jumping height.
+- MoSwimmer: Enhancing movement efficiency in fluid environments.
 
 ## Key Features
+
 - **GPU Acceleration** 💻: Leverages GPUs for enhanced computational capabilities.
 - **Large-Scale Optimization** 📈: Ideal for large population sizes and high-dimensional challenges.
 - **Flexibility** 🔨: Compatible with a variety of tensor-based reproduction operators, including GA, DE, PSO, and CSO.
