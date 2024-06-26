@@ -43,7 +43,7 @@ Below are demonstrations of TensorRVEA applied to various simulated multiobjecti
       MoHalfcheetah
     </td>
     <td align="center">
-      MoHooper-m2
+      MoHopper-m2
     </td>
     <td align="center">
       MoSwimmer
@@ -51,8 +51,9 @@ Below are demonstrations of TensorRVEA applied to various simulated multiobjecti
   </tr>
 </table>
 
+
 - MoHalfcheetah: Optimizing for speed and control cost.
-- MoHooper-m2: Aiming for maximum speed and jumping height.
+- MoHopper-m2: Aiming for maximum speed and jumping height.
 - MoSwimmer: Enhancing movement efficiency in fluid environments.
 
 ## Key Features
