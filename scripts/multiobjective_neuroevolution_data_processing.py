@@ -46,7 +46,7 @@ def load_and_aggregate_data(algorithm, env_name, num_runs, num_iter, ref, w, met
 
 
 def calculate_and_save_results(algorithm, env_name, pop, obj, hv, eu, times):
-    rank = non_dominated_sort(obj)
+    rank = non_dominated_sort(-obj)
     pf = rank == 0
     pf_pop = pop[pf]
     pf_obj = obj[pf]
