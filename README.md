@@ -232,8 +232,13 @@ if __name__ == "__main__":
 If you use TensorRVEA in your research and want to cite it in your work, please use:
 ```
 @inproceedings{tensorrvea,
-  title = {{GPU}-accelerated {Evolutionary} {Multiobjective} {Optimization} {Using} {Tensorized} {RVEA}},
-  author = {Liang, Zhenyu and Jiang, Tao and Sun, Kebin and Cheng, Ran},
-  booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference (GECCO)},
-  year = {2024}
+    author = {Liang, Zhenyu and Jiang, Tao and Sun, Kebin and Cheng, Ran},
+    title = {GPU-accelerated Evolutionary Multiobjective Optimization Using Tensorized RVEA},
+    year = {2024},
+    doi = {10.1145/3638529.3654223},
+    booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
+    pages = {566–575},
+    numpages = {10},
+    location = {Melbourne, VIC, Australia},
+    series = {GECCO '24}
 }
